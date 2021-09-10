@@ -1,0 +1,20 @@
+version: "3"
+
+volumes: 
+  mongodb_volume:
+  # server_volume:
+
+services:
+  node_server:
+    build: .
+    restart: always
+    volumes:
+      - ./src:/usr/src/app/src
+    ports: 
+      - 8088:8088
+  
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - mongodb_volume:/data/db
+    restart: always
